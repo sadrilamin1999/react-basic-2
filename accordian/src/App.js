@@ -3,6 +3,8 @@ import Accordian from "./components/Accordian";
 
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // handlers
   const handleShow = (index) => {
     setActiveIndex(index);
   };
