@@ -1,57 +1,43 @@
 import { useContext, useState } from "react";
-import { UserContext } from "../context/userContextProvider";
+import UserContext from "../context/UserContext";
 
 const Login = () => {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const { setUserData } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
-  const handleChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
-  const handleUserSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setUserData(user.name, user.email);
+    setUser({ name, email });
 
-    setUser({
-      // Resetting user state to empty values
-      name: "",
-      email: "",
-    });
+    // resect user
+    setName("");
+    setEmail("");
   };
-
   return (
-    <form onSubmit={handleUserSubmit}>
-      <div>
-        <label>Name</label>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">
+        Name:{" "}
         <input
           type="text"
-          name="name"
-          value={user.name}
-          onChange={handleChange}
-          required
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-      </div>
-      <div>
-        <label>Email</label>
+      </label>
+      <br />
+      <label htmlFor="email">
+        Email:{" "}
         <input
           type="email"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-          required
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-
-      <button type="submit">Log in</button>
+      </label>
+      <br />
+      <button type="submit">Login</button>
     </form>
   );
 };

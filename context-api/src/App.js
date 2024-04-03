@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import { UserContextProvider } from "./context/userContextProvider";
+import UserContextProvider from "./context/UserContextProvider";
 
 const App = () => {
   return (
@@ -11,4 +11,5 @@ const App = () => {
     </UserContextProvider>
   );
 };
+
 export default App;
